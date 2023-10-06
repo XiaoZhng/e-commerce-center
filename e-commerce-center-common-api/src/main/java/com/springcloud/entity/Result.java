@@ -3,6 +3,8 @@ package com.springcloud.entity;
 /**
  * @author XiaoZhag
  * 返回结果对象：以 json 格式返回
+ * Result<T> 自定义泛型类
+ * Result<T> 对象就是后端返回给前端的数据，是以 json 格式返回
  */
 public class Result<T> {
     private String code; //状态码

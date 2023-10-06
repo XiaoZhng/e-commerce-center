@@ -25,7 +25,8 @@ public class MemberController {
      * http 的请求头的 content-type 是对应的
      */
     @PostMapping("/member/save")
-    public Result save(Member member){
+    public Result save(@RequestBody Member member){
+        log.info("provider member={}", member);
         int result = memberService.save(member);
         if (result > 0){
             return Result.success(member, "添加成功");
