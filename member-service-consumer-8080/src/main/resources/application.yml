@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: member-service-consumer-8080
+
+# 配置 eureka client
+eureka:
+  client:
+    register-with-eureka: true # 将自己注册到 Eureka Server
+    # 表示从 Eureka Server 抓取注册信息
+    # 如果是单节点，是可以配置的，但是如果是一个集群，则必须配置 true
+    # 才能配合 Ribbon 使用负载均衡
+    fetch-registry: true
+    service-url:
+      # 表示将自己注册到哪个 Eureka Server
+      # defaultZone: http://localhost:9001/eureka
+      # 这里将本微服务注册到 Eureka Server 集群，使用逗号间隔
+      defaultZone: http://eureka9001.com:9001/eureka, http://eureka9002.com:9002/eureka

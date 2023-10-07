@@ -9,9 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- 该项目继承父项目的 groupId 是 com.springcloud
-     因此这里就不需要再指定 groupId -->
-    <artifactId>member-service-provider-10000</artifactId>
+    <artifactId>member-service-provider-10002</artifactId>
 
     <dependencies>
         <!--引入eureka-client 场景启动器starter: 使用版本仲裁-->

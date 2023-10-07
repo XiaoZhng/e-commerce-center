@@ -9,15 +9,13 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- 该项目继承父项目的 groupId 是 com.springcloud
-     因此这里就不需要再指定 groupId -->
-    <artifactId>member-service-provider-10000</artifactId>
+    <artifactId>e-commerce-eureka-server-9002</artifactId>
 
     <dependencies>
-        <!--引入eureka-client 场景启动器starter: 使用版本仲裁-->
+        <!--引入eureka-server 场景启动器starter: 使用版本仲裁-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -28,24 +26,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-            <!-- 这里需要指定版本，因为父项目没指定 -->
-            <version>1.2.8</version>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
