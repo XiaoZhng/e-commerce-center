@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author XiaoZhag
@@ -37,9 +38,17 @@ public class MemberController {
 
     @GetMapping("/member/get/{id}")
     public Result queryMemberById(@PathVariable("id") Long  id){
+
+//        //模拟超时，休眠 5s
+//        try {
+//            TimeUnit.MILLISECONDS.sleep(5000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
         Member member = memberService.queryMemberById(id);
         if (member != null){
-            return Result.success(member, "查询成功");
+            return Result.success(member, "查询成功,member-service-provider-10000");
         }else {
             return Result.error("401", "id = " + id + "的信息不存在");
         }

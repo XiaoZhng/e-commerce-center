@@ -1,0 +1,31 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: e-commerce-consumer-openfeign-8080
+
+# 配置 eureka client
+eureka:
+  client:
+    register-with-eureka: true # 将自己注册到 Eureka Server
+    # 表示从 Eureka Server 抓取注册信息
+    # 如果是单节点，是可以配置的，但是如果是一个集群，则必须配置 true
+    # 才能配合 Ribbon 使用负载均衡
+    fetch-registry: true
+    service-url:
+      # 表示将自己注册到哪个 Eureka Server
+      # 这里将本微服务注册到 Eureka Server 集群，使用逗号间隔
+      defaultZone: http://eureka9001.com:9001/eureka, http://eureka9002.com:9002/eureka
+
+#logging:
+#  level:
+#    # 对 MemberFeignService 接口调用过程打印信息 - debug
+#    com.springcloud.service.MemberFeignService: debug
+
+#ribbon:
+#  # 1.设置 feign 客户端超时时间（openfeign 默认支持 ribbon）
+#  # 2.ReadTimeout: 8000 建立连接从服务方获取可用资源的所用的全部时间
+#  # 3.时间单位是毫秒
+#  ReadTimeout: 8000
+#  # 两端连接所用的时间
+#  ConnectionTimeOut: 8000
