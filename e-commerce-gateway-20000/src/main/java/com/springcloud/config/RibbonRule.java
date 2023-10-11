@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
  * @author XiaoZhag
  * RibbonRule：配置自己的负载均衡算法
  */
-@Configuration
+//@Configuration
 public class RibbonRule {
 
     //配置注入负载均衡算法
