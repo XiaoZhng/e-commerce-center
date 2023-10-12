@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -37,7 +38,10 @@ public class MemberController {
     }
 
     @GetMapping("/member/get/{id}")
-    public Result queryMemberById(@PathVariable("id") Long  id){
+    public Result queryMemberById(@PathVariable("id") Long  id, HttpServletRequest request){
+
+//        String color = request.getParameter("color");
+//        String name = request.getParameter("name");
 
 //        //模拟超时，休眠 5s
 //        try {
@@ -49,6 +53,7 @@ public class MemberController {
         Member member = memberService.queryMemberById(id);
         if (member != null){
             return Result.success(member, "查询成功,member-service-provider-10000");
+//            return Result.success(member, "查询成功,member-service-provider-10000 color= " + color + "-" + name);
         }else {
             return Result.error("401", "id = " + id + "的信息不存在");
         }

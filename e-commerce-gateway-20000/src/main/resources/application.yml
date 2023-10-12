@@ -23,23 +23,33 @@ spring:
           # 1.lb：协议名  member-service-provider：注册到 eureka server 的服务名（小写）
           # 2.默认情况下，负载均衡算法是轮询
           uri: lb://member-service-provider
+#          uri: https://www.sohu.com
           predicates: # 断言，路径相匹配的进行路由
             - Path=/member/get/**
-            # After=2023-10-12T20:59:27.516+08:00[Asia/Shanghai] 这个时间之后的才匹配/转发，这个时间之前的不匹配，返回 404
-            # Before=2023-10-10T20:59:27.516+08:00[Asia/Shanghai] 这个时间之前的才匹配/转发，这个时间之后的不匹配，返回 404
-            # Between=2023-09-12T20:59:27.516+08:00[Asia/Shanghai],2023-10-15T20:59:27.516+08:00[Asia/Shanghai] 这两个时间范围内的才匹配/转发
-            # Cookie=user, felix，发送的请求中 cookie必须要带有 user=felix 才能访问成功
-            # Header=X-Request-Id, hello 发送的请求中，请求头中的 X-Request-Id=hello 才能访问成功
-            # Host=**.aaa.** 发送的请求中，访问的域名格式必须为 **.aaa.** 才能访问成功
-            # Method=POST,GET 发送的请求方法必须为 POST 或者 GET 才能访问成功
-            - Method=POST,GET
-        - id: member_router02
-          # 如果根据 Path 匹配成功 最终访问的 url/转发url 就是url=http://localhost:10000/member/save
-          # uri: http://localhost:10000
-          uri: lb://member-service-provider
-          predicates:
-            - Path=/member/save
-#        - id: member_router03
+            #- After=2023-10-12T20:59:27.516+08:00[Asia/Shanghai] 这个时间之后的才匹配/转发，这个时间之前的不匹配，返回 404
+            #- Before=2023-10-10T20:59:27.516+08:00[Asia/Shanghai] 这个时间之前的才匹配/转发，这个时间之后的不匹配，返回 404
+            #- Between=2023-09-12T20:59:27.516+08:00[Asia/Shanghai],2023-10-15T20:59:27.516+08:00[Asia/Shanghai] 这两个时间范围内的才匹配/转发
+            #- Cookie=user, felix，发送的请求中 cookie必须要带有 user=felix 才能访问成功
+            #- Header=X-Request-Id, hello 发送的请求中，请求头中的 X-Request-Id=hello 才能访问成功
+            #- Host=**.aaa.** 发送的请求中，访问的域名格式必须为 **.aaa.** 才能访问成功
+            #- Method=POST,GET 发送的请求方法必须为 POST 或者 GET 才能访问成功
+            #- Path=/member/get/**,/member/save 发送的请求路径必须为 /member/get/** 或 /member/save 才能访问成功
+            #- Query=email, [\w-]+@([a-zA-Z]+.)+[a-zA-Z]+ 发送的请求路径必须带有 email 且满足基本格式（支持正则表达式） 才能访问成功
+            #- RemoteAddr=127.0.0.1 发送的请求 IP 是 127.0.0.1 才能访问成功
+            #- Weight=group1, 8
+#          filters:
+            # 过滤器工厂会在匹配的请求头加上一对请求头，名称为 color 值为 red
+#            - AddRequestParameter=color, red
+#            - AddRequestParameter=name, jack
+#        - id: member_router02
+#          # 如果根据 Path 匹配成功 最终访问的 url/转发url 就是url=http://localhost:10000/member/save
+#          # uri: http://localhost:10000
+##          uri: lb://member-service-provider
+#          uri: https://www.baidu.com/
+#          predicates:
+#            - Weight=group1, 2
+#            - Path=/member/save
+##        - id: member_router03
 #          # 如果根据 Path 匹配成功 最终访问的 url/转发url 就是url=http://www.baidu.com/
 #          uri: https://www.baidu.com
 #          predicates:
