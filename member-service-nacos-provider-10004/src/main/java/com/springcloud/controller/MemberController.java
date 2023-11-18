@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -19,6 +20,16 @@ public class MemberController {
 
     @Resource
     private MemberService memberService;
+
+    @GetMapping("/t1")
+    public Result t1(){
+        return Result.success("t1()...");
+    }
+
+    @GetMapping("/t2")
+    public Result t2(){
+        return Result.success("t2()...");
+    }
 
     /**
      * 1.前端如果是以 json 格式来发送添加信息 Member，那么需要使用 @RequestBody,
@@ -39,8 +50,16 @@ public class MemberController {
 
     @GetMapping("/member/get/{id}")
     public Result queryMemberById(@PathVariable("id") Long  id){
+//    @GetMapping(value = "/member/get", params = "id")
+//        public Result queryMemberById(Long id){
         Member member = memberService.queryMemberById(id);
-        log.info("查询结果= " + member);
+        try {
+            //让线程休眠 1s，模拟执行时间
+            TimeUnit.MILLISECONDS.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        log.info("当前的线程id= " + Thread.currentThread().getId() + ",时间= " + new Date());
         if (member != null){
             return Result.success(member, "查询成功,member-service-nacos-provider-10004");
         }else {
