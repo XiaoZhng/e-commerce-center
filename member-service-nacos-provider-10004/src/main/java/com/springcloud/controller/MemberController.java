@@ -28,6 +28,13 @@ public class MemberController {
 
     @GetMapping("/t2")
     public Result t2(){
+        try{
+            //让线程休眠 1s, 模拟执行时间
+            TimeUnit.MILLISECONDS.sleep(1000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        log.info("正在执行t2(),线程id= " + Thread.currentThread().getId());
         return Result.success("t2()...");
     }
 
