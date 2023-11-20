@@ -21,6 +21,9 @@ public class MemberController {
     @Resource
     private MemberService memberService;
 
+    //设置静态变量
+    private static int num = 0;
+
     @GetMapping("/t1")
     public Result t1(){
         return Result.success("t1()...");
@@ -36,6 +39,27 @@ public class MemberController {
         }
         log.info("正在执行t2(),线程id= " + Thread.currentThread().getId());
         return Result.success("t2()...");
+    }
+
+    @GetMapping("/t3")
+    public Result t3(){
+        try{
+            //让线程休眠 300ms, 模拟执行时间
+            TimeUnit.MILLISECONDS.sleep(300);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        return Result.success("t3()...");
+    }
+
+    @GetMapping("/t4")
+    public Result t4(){
+        //异常比例 50%
+        if ((++num) % 2 == 0){
+            System.out.println(3 / 0);
+        }
+        log.info("正在执行t4(),线程id= " + Thread.currentThread().getId());
+        return Result.success("t4()...");
     }
 
     /**
